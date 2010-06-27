@@ -29,7 +29,14 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# Create your views here.
+from django.template.loader import get_template
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.template import RequestContext
 
-def index():
-    pass
+import os
+
+def index(R):
+    t = get_template(os.path.join('zipcode', 'index.html'))
+    html = t.render(RequestContext(R, {}))
+    return HttpResponse(html)

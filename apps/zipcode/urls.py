@@ -31,7 +31,7 @@
 
 from django.conf.urls.defaults import patterns
 
-urlpatterns = patterns('apps.zipcode',
+urlpatterns = patterns('apps.zipcode.views',
     # Example:
     # (r'^foo/', include('foo.urls')),
     (r'^$', 'index'),

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Execute Error at {{ request.path_info|escape }}</title>
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <style type="text/css">
+    html * { padding:0; margin:0; }
+    body * { padding:10px 20px; }
+    body * * { padding:0; }
+    body { font:small sans-serif; background:#EEE; }
+    body>div { border-bottom:1px solid #ddd; }
+    h1 { font-weight:normal; margin-bottom:.4em; }
+    h1 span { font-size:60%; color:#666; font-weight:normal; }
+    table { border:none; border-collapse: collapse; width:100%; }
+    td, th { vertical-align:top; padding:2px 3px; }
+    th { width:12em; text-align:right; color:#666; padding-right:.5em; }
+    #info { background:#F6F6F6; }
+    #info ol { margin: 0.5em 4em; }
+    #info ol li { font-family: monospace; }
+    #summary { background: #FFFFFF; }
+    #explanation { background:#EEE; border-bottom: 0px none; }
+  </style>
+</head>
+<body>
+  <div id="summary">
+    <h1>Post zipcode search system</h1>
+    <h2>Execute Error <span>(500)</span></h2>
+    <table class="meta">
+      <tr>
+        <th>Http Request Method:</th>
+        <td>{{ request.META.REQUEST_METHOD }}</td>
+      </tr>
+      <tr>
+        <th>Your Link:</th>
+        <td>{{ request.build_absolute_uri|escape }}</td>
+      </tr>
+      {% if request.META.HTTP_REFERER %}
+      <tr>
+        <th>Previous Link:</th>
+        <td>{{ request.META.HTTP_REFERER|escape }}</td>
+      </tr>
+      {% endif %}
+    </table>
+  </div>
+  <div id="explanation">
+    <p>
+        You see this page because the system has error (Error code is
+        {% if is_internal_ips %}
+            <a href="/appcommon/bugpage/{{ bug_page.code }}/">{{ bug_page.code }}</a>
+        {% else %}
+            {{ bug_page.code }}
+        {% endif %}
+        ), we already reported.
+    </p>
+    <h4>
+        Please try again later.
+    </h4>
+    <p>
+        Go back<a href="{{ request.META.HTTP_REFERER|escape }}">previous page</a> or
+        <a href="/">index page</a>。
+    </p>
+  </div>
+</body>
+</html>

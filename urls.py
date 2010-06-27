@@ -37,6 +37,8 @@ from django.conf.urls.defaults import handler500
 urlpatterns = patterns('',
     # Example:
     # (r'^foo/', include('foo.urls')),
+    (r'^appcommon/', include('apps.appcommon.urls')),
+
     (r'', include('apps.zipcode.urls')),
 
     # Uncomment this for admin:
