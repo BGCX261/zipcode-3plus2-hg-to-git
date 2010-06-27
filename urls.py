@@ -21,29 +21,6 @@ from django.conf.urls.defaults import handler500
 urlpatterns = patterns('',
     # Example:
     # (r'^foo/', include('foo.urls')),
-    #(r'^$', 'apps.requestticket.views.test'),
-    #(r'^gaebar/', include('gaebar.urls')), # gaebar 並未在 hg 中，所以有的機器有這個模組，而有的沒有。會造成執行時期出錯
-
-    (r'^originpatent/', include('apps.originpatent.urls')), # custom
-    (r'^OP/', include('apps.originpatent.urls')),                  # custom
-
-    (r'^requestticket/', include('apps.requestticket.urls')),
-    (r'^RT/', include('apps.requestticket.urls')),
-    (r'^authuser/', include('apps.authuser.urls')),
-    (r'^AU/', include('apps.authuser.urls')),
-    (r'^appcommon/', include('apps.appcommon.urls')),
-    (r'^AC/', include('apps.appcommon.urls')),
-    (r'^management/', include('apps.management.urls')),
-    (r'^MG/', include('apps.management.urls')),
-
-    (r'^', include('apps.originpatent.urls')),                       # custom
-
-    (r'^Danger/Flush/$', 'danger_command.Flush'),
-    (r'^Danger/LoadData/$', 'danger_command.LoadData'),
-    (r'^Danger/LoadTestData/$', 'danger_command.LoadTestData'),
-
-    (r'^Upgrade/$', 'upgrade_data.Upgrade'),
-    (r'^FixData/$', 'upgrade_data.FixData'),
 
     # Uncomment this for admin:
 #     (r'^admin/', include('django.contrib.admin.urls')),
