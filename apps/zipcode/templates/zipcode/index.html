@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title></title>
+    <title>3+2郵遞區號查詢系統</title>
   </head>
   <body>
     <form>
-        <select>
+        <select id="id_ho600_countys">
             <option value="台北市">台北市</option>
             <option value="基隆市">基隆市</option>
             <option value="台北縣">台北縣</option>
@@ -35,6 +35,27 @@
             <option value="南海島">南海島</option>
             <option value="釣魚台">釣魚台</option>
         </select>
+        <select id="id_ho600_districts">
+            <option value="100">中正區</option>
+            <option value="103">大同區</option>
+            <option value="104">中山區</option>
+            <option value="105">松山區</option>
+            <option value="106">大安區</option>
+            <option value="108">萬華區</option>
+            <option value="110">信義區</option>
+            <option value="111">士林區</option>
+            <option value="112">北投區</option>
+            <option value="114">內湖區</option>
+            <option value="115">南港區</option>
+            <option value="116">文山區</option>
+        </select>
+        <span title="如： 羅斯福路 1 段。">路街名： <input type="text" id="id_ho600_street" /></span>
+        <select>
+            <option value="" id="id_ho600_kind">請選擇號次類別(須先提供路街名)</option>
+        </select>
+        <span title="如： 9999 號 3 樓之 1 。">地址： <input type="text" id="id_ho600_number" /></span>
     </form>
+      <span>地址全名：</span>
+      <span id="id_ho600_address"></span>
   </body>
 </html>
