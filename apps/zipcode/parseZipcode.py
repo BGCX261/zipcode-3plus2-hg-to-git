@@ -38,6 +38,7 @@ from django.utils import simplejson as json
 def run(filename, export_dir):
     HO600_COUNTY = {}
     HO600_DISTRICT = {}
+    HO600_KIND = {}
 
     file = open(filename)
     i = 0
@@ -46,8 +47,25 @@ def run(filename, export_dir):
         if not row: break
         i += 1
 
-        code5, code3, county, district, kind = \
-            re.match('^((...)..)(...)([^ ]+) +([^ ].*)$', row).groups()
+        row = row.replace('  ', ' ').replace('\r', '')
+
+        try:
+            code5, code3, county, district, street, kind = \
+                re.match('^((...)..)(...)(....)(...........)(.*)$', row).groups()
+        except AttributeError:
+            print row
+            sys.exit()
+        else:
+            district = district.replace(' ', '')
+            street = street.replace(' ', '')
+            kind = re.sub(' +$', '', kind)
+#        print code3+':',
+#        print code5+':',
+#        print county+':',
+#        print district+':',
+#        print street+':',
+#        print kind
+
 
         try:
             if (code3, district) not in HO600_COUNTY[county]:
@@ -55,15 +73,52 @@ def run(filename, export_dir):
         except KeyError:
             HO600_COUNTY[county] = [(code3, district)]
 
-        print code3,
-        print code5,
-        print county,
-        print district,
-        print kind
+        try:
+            if street not in HO600_DISTRICT[code3]:
+                HO600_DISTRICT[code3].append(street)
+        except KeyError:
+            HO600_DISTRICT[code3] = [street]
 
-        if i > 10: break
+        try:
+            if (code5, kind) not in HO600_KIND['%s:%s'%(code3, street)]:
+                HO600_KIND['%s:%s'%(code3, street)].append([code5, kind])
+        except KeyError:
+            HO600_KIND['%s:%s'%(code3, street)] = [[code5, kind]]
 
-    print HO600_COUNTY
+        #if i > 10: break
+
+#    print 'HO600_COUNTY:'
+#    for k, v in HO600_COUNTY.items():
+#        print '\t', k, v
+#    print 'HO600_DISTRICT:'
+#    for k, v in HO600_DISTRICT.items():
+#        print '\t', k, v
+#    print 'HO600_KIND:'
+#    for k, v in HO600_KIND.items():
+#        print '\t', k, v
+
+    content = 'var ho600_county = %s;' % json.dumps(HO600_COUNTY)
+    for word in set(re.findall('\u([0-9a-f][0-9a-f][0-9a-f][0-9a-f])', content)):
+        content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
+    file = open(os.path.join(export_dir, 'ho600_county.js'), 'w')
+    file.write(content)
+    file.close()
+
+    content = 'var ho600_district = %s;' % json.dumps(HO600_DISTRICT)
+    for word in set(re.findall('\u([0-9a-f][0-9a-f][0-9a-f][0-9a-f])', content)):
+        content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
+    file = open(os.path.join(export_dir, 'ho600_district.js'), 'w')
+    file.write(content)
+    file.close()
+
+    content = 'var ho600_kind = %s;' % json.dumps(HO600_KIND)
+    for word in set(re.findall('\u([0-9a-f][0-9a-f][0-9a-f][0-9a-f])', content)):
+        content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
+    file = open(os.path.join(export_dir, 'ho600_kind.js'), 'w')
+    file.write(content)
+    file.close()
+
+    print 'done'
 
 
 if __name__ == '__main__':
@@ -71,6 +126,6 @@ if __name__ == '__main__':
     import os
     filename = sys.argv[1]
     export_dir = (sys.argv[2] if len(sys.argv) > 2 and os.path.isdir(sys.argv[2])
-        else os.path.join(os.path.dirname(__file__), 'media', 'zipcode'))
+        else os.path.join(os.path.dirname(__file__), 'media'))
 
     run(filename, export_dir)
