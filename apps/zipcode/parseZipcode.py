@@ -50,8 +50,8 @@ def run(filename, export_dir):
         row = row.replace('  ', ' ').replace('\r', '')
 
         try:
-            code5, code3, county, district, street, kind = \
-                re.match('^((...)..)(...)(....)(...........)(.*)$', row).groups()
+            code3, code2, county, district, street, kind = \
+                re.match('^(...)(..)(...)(....)(...........)(.*)$', row).groups()
         except AttributeError:
             print row
             sys.exit()
@@ -60,7 +60,7 @@ def run(filename, export_dir):
             street = street.replace(' ', '')
             kind = re.sub(' +$', '', kind)
 #        print code3+':',
-#        print code5+':',
+#        print code2+':',
 #        print county+':',
 #        print district+':',
 #        print street+':',
@@ -80,10 +80,10 @@ def run(filename, export_dir):
             HO600_DISTRICT[code3] = [street]
 
         try:
-            if (code5, kind) not in HO600_KIND['%s:%s'%(code3, street)]:
-                HO600_KIND['%s:%s'%(code3, street)].append([code5, kind])
+            if (code2, kind) not in HO600_KIND['%s:%s'%(code3, street)]:
+                HO600_KIND['%s:%s'%(code3, street)].append([code2, kind])
         except KeyError:
-            HO600_KIND['%s:%s'%(code3, street)] = [[code5, kind]]
+            HO600_KIND['%s:%s'%(code3, street)] = [[code2, kind]]
 
         #if i > 10: break
 
@@ -97,25 +97,37 @@ def run(filename, export_dir):
 #    for k, v in HO600_KIND.items():
 #        print '\t', k, v
 
-    content = 'var ho600_county = %s;' % json.dumps(HO600_COUNTY)
+    content = json.dumps(HO600_COUNTY)
     for word in set(re.findall('\u([0-9a-f][0-9a-f][0-9a-f][0-9a-f])', content)):
         content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
     file = open(os.path.join(export_dir, 'ho600_county.js'), 'w')
-    file.write(content)
+    content = content.replace(' ', '')
+    county_content = 'var ho600_county=%s;\n' % content
+    file.write(county_content)
     file.close()
 
-    content = 'var ho600_district = %s;' % json.dumps(HO600_DISTRICT)
+    content = json.dumps(HO600_DISTRICT)
     for word in set(re.findall('\u([0-9a-f][0-9a-f][0-9a-f][0-9a-f])', content)):
         content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
     file = open(os.path.join(export_dir, 'ho600_district.js'), 'w')
-    file.write(content)
+    content = content.replace(' ', '')
+    district_content = 'var ho600_district=%s;\n' % content
+    file.write(district_content)
     file.close()
 
-    content = 'var ho600_kind = %s;' % json.dumps(HO600_KIND)
+    content = json.dumps(HO600_KIND)
     for word in set(re.findall('\u([0-9a-f][0-9a-f][0-9a-f][0-9a-f])', content)):
         content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
     file = open(os.path.join(export_dir, 'ho600_kind.js'), 'w')
-    file.write(content)
+    content = content.replace(' ', '')
+    kind_content = 'var ho600_kind=%s;\n' % content
+    file.write(kind_content)
+    file.close()
+
+    file = open(os.path.join(export_dir, 'ho600_zipcode.js'), 'w')
+    file.write(county_content)
+    file.write(district_content)
+    file.write(kind_content)
     file.close()
 
     print 'done'

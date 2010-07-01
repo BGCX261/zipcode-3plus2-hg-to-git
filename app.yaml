@@ -18,4 +18,4 @@ handlers:
 
 - url: /.*
   script: main.py
-  login: required
+#  login: required
