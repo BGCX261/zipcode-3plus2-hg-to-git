@@ -29,8 +29,16 @@
             }
             return a;
         }
-        function selectCountys () {
-            alert('c');
+        function selectCountys (node) {
+            return function() {
+                var county = this.value;
+                var districts = HO600_COUNTY[county];
+                var $district = getElementByClassName('districts', node);
+                $district.length = 0;
+                for (var i=0; i<districts.length; i++) {
+                    $district.options.add(new Option(districts[i][1]+'('+districts[i][0]+')', districts[i][0]));
+                }
+            }
         }
         function selectDistricts () {
             alert('d');
@@ -65,7 +73,7 @@
                 var $reset = getElementByClassName('reset', ho600s[i]);
                 $reset.onclick = reset;
                 var $county = getElementByClassName('countys', ho600s[i]);
-                $county.onchange = selectCountys;
+                $county.onchange = selectCountys(ho600s[i]);
                 var $district = getElementByClassName('districts', ho600s[i]);
                 $district.onchange = selectDistricts;
                 var $street = getElementByClassName('street', ho600s[i]);
@@ -113,18 +121,18 @@
             <option value="釣魚台">釣魚台</option>
         </select>
         <select class="districts">
-            <option value="100">中正區</option>
-            <option value="103">大同區</option>
-            <option value="104">中山區</option>
-            <option value="105">松山區</option>
-            <option value="106">大安區</option>
-            <option value="108">萬華區</option>
-            <option value="110">信義區</option>
-            <option value="111">士林區</option>
-            <option value="112">北投區</option>
-            <option value="114">內湖區</option>
-            <option value="115">南港區</option>
-            <option value="116">文山區</option>
+            <option value="100">中正區(100)</option>
+            <option value="103">大同區(103)</option>
+            <option value="104">中山區(104)</option>
+            <option value="105">松山區(105)</option>
+            <option value="106">大安區(106)</option>
+            <option value="108">萬華區(108)</option>
+            <option value="110">信義區(110)</option>
+            <option value="111">士林區(111)</option>
+            <option value="112">北投區(112)</option>
+            <option value="114">內湖區(114)</option>
+            <option value="115">南港區(115)</option>
+            <option value="116">文山區(116)</option>
         </select>
         <span title="如： 羅斯福路 1 段。">路街名： <input type="text" class="street" /></span>
         <select>

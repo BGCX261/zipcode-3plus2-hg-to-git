@@ -102,7 +102,7 @@ def run(filename, export_dir):
         content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
     file = open(os.path.join(export_dir, 'ho600_county.js'), 'w')
     content = content.replace(' ', '')
-    county_content = 'var ho600_county=%s;\n' % content
+    county_content = 'var HO600_COUNTY=%s;\n' % content
     file.write(county_content)
     file.close()
 
@@ -111,7 +111,7 @@ def run(filename, export_dir):
         content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
     file = open(os.path.join(export_dir, 'ho600_district.js'), 'w')
     content = content.replace(' ', '')
-    district_content = 'var ho600_district=%s;\n' % content
+    district_content = 'var HO600_DISTRICT=%s;\n' % content
     file.write(district_content)
     file.close()
 
@@ -120,7 +120,7 @@ def run(filename, export_dir):
         content = content.replace(r'\u'+word, eval(r"u'\u"+word+"'"))
     file = open(os.path.join(export_dir, 'ho600_kind.js'), 'w')
     content = content.replace(' ', '')
-    kind_content = 'var ho600_kind=%s;\n' % content
+    kind_content = 'var HO600_KIND=%s;\n' % content
     file.write(kind_content)
     file.close()
 
