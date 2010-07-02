@@ -38,10 +38,13 @@
                 for (var i=0; i<districts.length; i++) {
                     $district.options.add(new Option(districts[i][1]+'('+districts[i][0]+')', districts[i][0]));
                 }
+                updateAddress(node);
             }
         }
-        function selectDistricts () {
-            alert('d');
+        function selectDistricts (node) {
+            return function() {
+                updateAddress(node);
+            }
         }
         function typeStreet () {
             alert('s');
@@ -60,9 +63,17 @@
             var county = $county.value;
             var $district = getElementByClassName('districts', node);
             var district = $district.options[$district.selectedIndex].text;
+            district = district.replace(/\(.*\)/, '');
+
+            var $zipcode = getElementByClassName('zipcode', node);
+            var $kind = getElementByClassName('kinds', node);
+            $zipcode.innerText = $district.value + $kind.value;
 
             var $address = getElementByClassName('address', node);
             $address.innerText = county + ' ' + district;
+
+            var $zipcode_address = getElementByClassName('zipcode_address', node);
+            $zipcode_address.innerText = $zipcode.innerText + ' ' + $address.innerText;
         }
         function loadHo600 () {
             var ho600s = getElementsByClassName('ho600');
@@ -75,7 +86,7 @@
                 var $county = getElementByClassName('countys', ho600s[i]);
                 $county.onchange = selectCountys(ho600s[i]);
                 var $district = getElementByClassName('districts', ho600s[i]);
-                $district.onchange = selectDistricts;
+                $district.onchange = selectDistricts(ho600s[i]);
                 var $street = getElementByClassName('street', ho600s[i]);
                 $street.onkeyup = typeStreet;
                 var $kind = getElementByClassName('kinds', ho600s[i]);
@@ -135,14 +146,19 @@
             <option value="116">文山區(116)</option>
         </select>
         <span title="如： 羅斯福路 1 段。">路街名： <input type="text" class="street" /></span>
-        <select>
-            <option value="" class="kinds">請選擇號次類別(須先提供路街名)</option>
+        <select class="kinds">
+            <option value="">請選擇號次類別(須先提供路街名)</option>
         </select>
         <span title="如： 9999 號 3 樓之 1 。">地址： <input type="text" class="number" /></span>
+        <br/>
         <span>郵遞區號：</span>
-        <span class="zipcode"></span>，
-        <span>地址全名：</span>
+        <span class="zipcode"></span>
+        <br/>
+        <span>地址　　：</span>
         <span class="address"></span>
+        <br/>
+        <span>地址全名：</span>
+        <span class="zipcode_address"></span>
     </div>
   </body>
 </html>
