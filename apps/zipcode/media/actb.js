@@ -6,7 +6,7 @@ function actb(obj,ca){
     this.actb_lim = 20;    // Number of elements autocomplete can show (-1: no limit)
     this.actb_firstText = false; // should the auto complete be limited to the beginning of keyword?
     this.actb_mouse = true; // Enable Mouse Support
-    this.actb_delimiter = new Array('');  // Delimiter for multiple autocomplete. Set it to empty array for single autocomplete
+    this.actb_delimiter = new Array('&&&');  // Delimiter for multiple autocomplete. Set it to empty array for single autocomplete
     this.actb_startcheck = 1; // Show widget only after this number of characters is typed in.
     /* ---- Public Variables ---- */
 
