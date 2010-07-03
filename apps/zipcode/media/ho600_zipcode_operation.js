@@ -175,28 +175,28 @@ function updateAddress (node) {
 
     var $zipcode = getElementByClassName('zipcode', node);
     var $kind = getElementByClassName('kinds', node);
-    $zipcode.innerText = $district.value + $kind.value;
+    $zipcode.innerHTML = $district.value + $kind.value;
 
     var $address = getElementByClassName('address', node);
     if (street) {
         if (number) {
-            $address.innerText = county + ' ' + district + ' ' + street + ' ' + number;
+            $address.innerHTML = county + ' ' + district + ' ' + street + ' ' + number;
         } else {
-            $address.innerText = county + ' ' + district + ' ' + street;
+            $address.innerHTML = county + ' ' + district + ' ' + street;
         }
     } else {
-        $address.innerText = county + ' ' + district;
+        $address.innerHTML = county + ' ' + district;
     }
 
     var $zipcode_address = getElementByClassName('zipcode_address', node);
-    $zipcode_address.innerText = $zipcode.innerText + ' ' + $address.innerText;
+    $zipcode_address.innerHTML = $zipcode.innerHTML + ' ' + $address.innerHTML;
 }
 
 window.onload = function loadHo600 () {
     var ho600s = getElementsByClassName('ho600');
     for (var i=0; i<ho600s.length; i++){
         var $zipcode = getElementByClassName('zipcode', ho600s[i]);
-        $zipcode.innerText = '00000';
+        $zipcode.innerHTML = '00000';
 
         var $reset = getElementByClassName('reset', ho600s[i]);
         $reset.onclick = reset(ho600s[i]);
