@@ -90,6 +90,8 @@ function createKinds (node) {
             return false;
         }
 
+        $street.value = $street.value.replace(/ /g, '');
+
         if (! HO600_KIND[$district.value+$street.value]) {
             $kind.length = 0;
             $kind.options.add(new Option('未存在的路街名', ''));
