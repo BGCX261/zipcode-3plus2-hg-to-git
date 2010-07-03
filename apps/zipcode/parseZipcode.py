@@ -80,10 +80,10 @@ def run(filename, export_dir):
             HO600_DISTRICT[code3] = [street]
 
         try:
-            if (code2, kind) not in HO600_KIND['%s:%s'%(code3, street)]:
-                HO600_KIND['%s:%s'%(code3, street)].append([code2, kind])
+            if (code2, kind) not in HO600_KIND['%s%s'%(code3, street)]:
+                HO600_KIND['%s%s'%(code3, street)].append([code2, kind])
         except KeyError:
-            HO600_KIND['%s:%s'%(code3, street)] = [[code2, kind]]
+            HO600_KIND['%s%s'%(code3, street)] = [[code2, kind]]
 
         #if i > 10: break
 
