@@ -89,6 +89,11 @@ function createKinds (node) {
         }
     }
 }
+function selectKinds (node) {
+    return function () {
+        updateAddress(node);
+    }
+}
 function typeNumber (node) {
     return function () {
         updateAddress(node);
@@ -165,7 +170,7 @@ function loadHo600 () {
 
         var $kind = getElementByClassName('kinds', ho600s[i]);
         $kind.onmouseover = createKinds(ho600s[i]);
-        $kind.onchange = updateAddress(ho600s[i]);
+        $kind.onchange = selectKinds(ho600s[i]);
         var $number = getElementByClassName('number', ho600s[i]);
         $number.onkeyup = typeNumber(ho600s[i]);
 
