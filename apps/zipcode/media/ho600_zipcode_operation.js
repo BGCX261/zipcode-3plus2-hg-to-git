@@ -31,6 +31,9 @@ function selectCountys (node) {
         for (var i=0; i<districts.length; i++) {
             $district.options.add(new Option(districts[i][1]+'('+districts[i][0]+')', districts[i][0]));
         }
+
+        $district.actb_obj.actb_keywords = HO600_DISTRICT[$district.value];
+
         updateAddress(node);
     }
 }
@@ -41,7 +44,6 @@ function selectDistricts (node) {
         var $kind = getElementByClassName('kinds', node);
         var $number = getElementByClassName('number', node);
 
-        //var obj = actb($street, HO600_DISTRICT[district]);
         this.actb_obj.actb_keywords = HO600_DISTRICT[district];
 
         $street.value = '';
@@ -100,6 +102,18 @@ function typeNumber (node) {
     }
 }
 function reset (node) {
+    return function () {
+        var $street = getElementByClassName('street', node);
+        $street.value = '';
+        var $kind = getElementByClassName('kinds', node);
+        $kind.length = 0;
+        var $number = getElementByClassName('number', node);
+        $number.value = '';
+
+        updateAddress(node);
+    }
+}
+function allReset (node) {
     return function () {
         var $county = getElementByClassName('countys', node);
         $county.value = '台北市';
@@ -162,6 +176,9 @@ function loadHo600 () {
 
         var $reset = getElementByClassName('reset', ho600s[i]);
         $reset.onclick = reset(ho600s[i]);
+        var $all_reset = getElementByClassName('all_reset', ho600s[i]);
+        $all_reset.onclick = allReset(ho600s[i]);
+
         var $county = getElementByClassName('countys', ho600s[i]);
         $county.onchange = selectCountys(ho600s[i]);
         var $district = getElementByClassName('districts', ho600s[i]);

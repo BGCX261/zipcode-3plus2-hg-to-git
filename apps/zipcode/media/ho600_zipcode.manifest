@@ -1,9 +1,10 @@
 CACHE MANIFEST
 
-# v2
+# v8
 
 CACHE:
 
 /zipcode/media/actb_common.js
 /zipcode/media/actb.js
 /zipcode/media/ho600_zipcode.js
+/zipcode/media/ho600_zipcode_operation.js

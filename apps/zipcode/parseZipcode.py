@@ -124,13 +124,13 @@ def run(filename, export_dir):
     file.write(kind_content)
     file.close()
 
-    operation_file = open(os.path.join(export_dir, 'ho600_zipcode_operation.js'))
+    #operation_file = open(os.path.join(export_dir, 'ho600_zipcode_operation.js'))
 
     file = open(os.path.join(export_dir, 'ho600_zipcode.js'), 'w')
     file.write(county_content)
     file.write(district_content)
     file.write(kind_content)
-    file.write('\n'+operation_file.read())
+    #file.write('\n'+operation_file.read())
     file.close()
 
     print 'done'
