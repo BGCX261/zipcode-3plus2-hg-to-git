@@ -1,13 +1,27 @@
-function getElementByClassName(classname, node)  {
-    // only want the first one.
-    var re = new RegExp('\\b' + classname + '\\b');
-    var els = node.getElementsByTagName("*");
-    for(var i=0; i<els.length; i++) {
-        if(re.test(els[i].className)) {
-            return els[i];
+function compareAllChildren (re, obj) {
+    for(var i=0; i<obj.childNodes.length; i++) {
+        if (re.test(obj.childNodes[i].className)) {
+            return obj.childNodes[i];
+        } else {
+            var res = compareAllChildren(re, obj.childNodes[i]);
+            if (res) {
+                return res;
+            }
         }
     }
 }
+
+function getElementByClassName(classname, node)  {
+    // only want the first one.
+    var re = new RegExp('\\b' + classname + '\\b');
+    if (re.test(node.className)) {
+        return node;
+    } else {
+        var res = compareAllChildren(re, node);
+        return res;
+    }
+}
+
 function getElementsByClassName(classname, node)  {
     if(!node) {
         node = document.getElementsByTagName("body")[0];
@@ -22,6 +36,7 @@ function getElementsByClassName(classname, node)  {
     }
     return a;
 }
+
 function selectCountys (node) {
     return function() {
         var county = this.value;
@@ -37,6 +52,7 @@ function selectCountys (node) {
         updateAddress(node);
     }
 }
+
 function selectDistricts (node) {
     return function () {
         var district = this.value;
@@ -53,6 +69,7 @@ function selectDistricts (node) {
         updateAddress(node);
     }
 }
+
 function removeKinds (node) {
     return function () {
         var $street = this;
@@ -62,6 +79,7 @@ function removeKinds (node) {
         }
     }
 }
+
 function createKinds (node) {
     return function () {
         var $kind = this;
@@ -91,16 +109,19 @@ function createKinds (node) {
         }
     }
 }
+
 function selectKinds (node) {
     return function () {
         updateAddress(node);
     }
 }
+
 function typeNumber (node) {
     return function () {
         updateAddress(node);
     }
 }
+
 function reset (node) {
     return function () {
         var $street = getElementByClassName('street', node);
@@ -113,6 +134,7 @@ function reset (node) {
         updateAddress(node);
     }
 }
+
 function allReset (node) {
     return function () {
         var $county = getElementByClassName('countys', node);
@@ -137,6 +159,7 @@ function allReset (node) {
         updateAddress(node);
     }
 }
+
 function updateAddress (node) {
     var $county = getElementByClassName('countys', node);
     var county = $county.value;
@@ -168,7 +191,8 @@ function updateAddress (node) {
     var $zipcode_address = getElementByClassName('zipcode_address', node);
     $zipcode_address.innerText = $zipcode.innerText + ' ' + $address.innerText;
 }
-function loadHo600 () {
+
+window.onload = function loadHo600 () {
     var ho600s = getElementsByClassName('ho600');
     for (var i=0; i<ho600s.length; i++){
         var $zipcode = getElementByClassName('zipcode', ho600s[i]);
