@@ -1,11 +1,11 @@
 CACHE MANIFEST
 
-# v97
+# v99
 
 CACHE:
 
+/favicon.ico
 /media/h6.png
-
 /zipcode/media/actb_common.js
 /zipcode/media/actb.js
 /zipcode/media/ho600_zipcode.js
