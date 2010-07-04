@@ -194,7 +194,75 @@ function updateAddress (node) {
     $zipcode_address.innerHTML = $zipcode.innerHTML + ' ' + $address.innerHTML;
 }
 
-window.onload = function loadHo600 () {
+function writeHo600ZipcodeDIV (classname) {
+    if(!classname) classname = '';
+    
+    var html = '';
+    html += '%3Cdiv class="ho600 '+ classname + '"%3E';
+    html += '    %3Cselect class="countys"%3E';
+    html += '        %3Coption value="台北市"%3E台北市%3C/option%3E';
+    html += '        %3Coption value="基隆市"%3E基隆市%3C/option%3E';
+    html += '        %3Coption value="台北縣"%3E台北縣%3C/option%3E';
+    html += '        %3Coption value="桃園縣"%3E桃園縣%3C/option%3E';
+    html += '        %3Coption value="新竹市"%3E新竹市%3C/option%3E';
+    html += '        %3Coption value="新竹縣"%3E新竹縣%3C/option%3E';
+    html += '        %3Coption value="苗栗縣"%3E苗栗縣%3C/option%3E';
+    html += '        %3Coption value="台中市"%3E台中市%3C/option%3E';
+    html += '        %3Coption value="台中縣"%3E台中縣%3C/option%3E';
+    html += '        %3Coption value="彰化縣"%3E彰化縣%3C/option%3E';
+    html += '        %3Coption value="南投縣"%3E南投縣%3C/option%3E';
+    html += '        %3Coption value="雲林縣"%3E雲林縣%3C/option%3E';
+    html += '        %3Coption value="嘉義市"%3E嘉義市%3C/option%3E';
+    html += '        %3Coption value="嘉義縣"%3E嘉義縣%3C/option%3E';
+    html += '        %3Coption value="台南市"%3E台南市%3C/option%3E';
+    html += '        %3Coption value="台南縣"%3E台南縣%3C/option%3E';
+    html += '        %3Coption value="高雄市"%3E高雄市%3C/option%3E';
+    html += '        %3Coption value="高雄縣"%3E高雄縣%3C/option%3E';
+    html += '        %3Coption value="屏東縣"%3E屏東縣%3C/option%3E';
+    html += '        %3Coption value="宜蘭縣"%3E宜蘭縣%3C/option%3E';
+    html += '        %3Coption value="花蓮縣"%3E花蓮縣%3C/option%3E';
+    html += '        %3Coption value="台東縣"%3E台東縣%3C/option%3E';
+    html += '        %3Coption value="澎湖縣"%3E澎湖縣%3C/option%3E';
+    html += '        %3Coption value="金門縣"%3E金門縣%3C/option%3E';
+    html += '        %3Coption value="連江縣"%3E連江縣%3C/option%3E';
+    html += '        %3Coption value="南海島"%3E南海島%3C/option%3E';
+    html += '        %3Coption value="釣魚台"%3E釣魚台%3C/option%3E';
+    html += '    %3C/select%3E';
+    html += '    %3Cselect class="districts"%3E';
+    html += '        %3Coption value="100"%3E中正區(100)%3C/option%3E';
+    html += '        %3Coption value="103"%3E大同區(103)%3C/option%3E';
+    html += '        %3Coption value="104"%3E中山區(104)%3C/option%3E';
+    html += '        %3Coption value="105"%3E松山區(105)%3C/option%3E';
+    html += '        %3Coption value="106"%3E大安區(106)%3C/option%3E';
+    html += '        %3Coption value="108"%3E萬華區(108)%3C/option%3E';
+    html += '        %3Coption value="110"%3E信義區(110)%3C/option%3E';
+    html += '        %3Coption value="111"%3E士林區(111)%3C/option%3E';
+    html += '        %3Coption value="112"%3E北投區(112)%3C/option%3E';
+    html += '        %3Coption value="114"%3E內湖區(114)%3C/option%3E';
+    html += '        %3Coption value="115"%3E南港區(115)%3C/option%3E';
+    html += '        %3Coption value="116"%3E文山區(116)%3C/option%3E';
+    html += '    %3C/select%3E';
+    html += '    %3Cspan title="如： 羅斯福路 1 段。"%3E路街名： %3Cinput type="text" class="street" /%3E%3C/span%3E';
+    html += '    %3Cselect class="kinds"%3E';
+    html += '        %3Coption value=""%3E%3C/option%3E';
+    html += '    %3C/select%3E';
+    html += '    %3Cspan title="如： 9999 號 3 樓之 1 。"%3E地址： %3Cinput type="text" class="number" /%3E%3C/span%3E';
+    html += '    %3Cinput type="submit" value="路街名重設" class="reset" /%3E';
+    html += '    %3Cinput type="submit" value="全部重設" class="all_reset" /%3E';
+    html += '    %3Cbr/%3E';
+    html += '    %3Cspan%3E郵遞區號：%3C/span%3E';
+    html += '    %3Cspan class="zipcode"%3E%3C/span%3E';
+    html += '    %3Cbr/%3E';
+    html += '    %3Cspan%3E地址　　：%3C/span%3E';
+    html += '    %3Cspan class="address"%3E%3C/span%3E';
+    html += '    %3Cbr/%3E';
+    html += '    %3Cspan%3E地址全名：%3C/span%3E';
+    html += '    %3Cspan class="zipcode_address"%3E%3C/span%3E';
+    html += '%3C/div%3E';
+    document.write(unescape(html));
+}
+
+function loadHo600Zipcode () {
     var ho600s = getElementsByClassName('ho600');
     for (var i=0; i<ho600s.length; i++){
         var $zipcode = getElementByClassName('zipcode', ho600s[i]);

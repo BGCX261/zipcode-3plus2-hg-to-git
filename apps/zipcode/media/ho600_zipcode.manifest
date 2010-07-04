@@ -1,8 +1,10 @@
 CACHE MANIFEST
 
-# v49
+# v94
 
 CACHE:
+
+/media/h6.png
 
 /zipcode/media/actb_common.js
 /zipcode/media/actb.js

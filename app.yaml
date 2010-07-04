@@ -9,13 +9,16 @@ handlers:
   script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
   login: admin
 
-- url: /zipcode/media/ho600_zipcode.manifest
+- url: /zipcode/media/(.*).manifest
   mime_type: text/cache-manifest
-  static_files: apps/zipcode/media/ho600_zipcode.manifest
-  upload: apps/zipcode/media/ho600_zipcode.manifest
+  static_files: apps/zipcode/media/\1.manifest
+  upload: apps/zipcode/media/(.*).manifest
 
 - url: /zipcode/media
   static_dir: apps/zipcode/media
+
+- url: /media
+  static_dir: media
 
 #- url: /(.*\.(ico|gif|png|jpg))
 #  static_files: apps/zipcode/media/\1

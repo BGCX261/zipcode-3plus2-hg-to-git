@@ -124,13 +124,23 @@ def run(filename, export_dir):
     file.write(kind_content)
     file.close()
 
-    #operation_file = open(os.path.join(export_dir, 'ho600_zipcode_operation.js'))
-
     file = open(os.path.join(export_dir, 'ho600_zipcode.js'), 'w')
     file.write(county_content)
     file.write(district_content)
     file.write(kind_content)
-    #file.write('\n'+operation_file.read())
+    file.close()
+
+    actb_common_file = open(os.path.join(export_dir, 'actb_common.js'))
+    actb_file = open(os.path.join(export_dir, 'actb.js'))
+    operation_file = open(os.path.join(export_dir, 'ho600_zipcode_operation.js'))
+
+    file = open(os.path.join(export_dir, 'ho600_zipcode_embeded.js'), 'w')
+    file.write('\n'+actb_common_file.read())
+    file.write('\n'+actb_file.read())
+    file.write(county_content)
+    file.write(district_content)
+    file.write(kind_content)
+    file.write('\n'+operation_file.read())
     file.close()
 
     print 'done'

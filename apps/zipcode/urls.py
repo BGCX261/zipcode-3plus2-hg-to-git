@@ -35,6 +35,7 @@ urlpatterns = patterns('apps.zipcode.views',
     # Example:
     # (r'^foo/', include('foo.urls')),
     (r'^$', 'index'),
+    (r'^embeded.html$', 'rEmbededPage'),
 
     # Uncomment this for admin:
 #     (r'^admin/', include('django.contrib.admin.urls')),

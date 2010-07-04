@@ -40,3 +40,8 @@ def index(R):
     t = get_template(os.path.join('zipcode', 'index.html'))
     html = t.render(RequestContext(R, {}))
     return HttpResponse(html)
+
+def rEmbededPage(R):
+    t = get_template(os.path.join('zipcode', 'embeded.html'))
+    html = t.render(RequestContext(R, {}))
+    return HttpResponse(html)

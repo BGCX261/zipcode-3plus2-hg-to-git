@@ -1,74 +1,104 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html manifest="/zipcode/media/ho600_zipcode.manifest">
+<html{% block manifest %} manifest="/zipcode/media/ho600_zipcode.manifest"{% endblock %}>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>3+2郵遞區號查詢系統</title>
-    <script type="text/javascript" src="/zipcode/media/actb_common.js"></script>
-    <script type="text/javascript" src="/zipcode/media/actb.js"></script>
-    <script type="text/javascript" src="/zipcode/media/ho600_zipcode.js"></script>
-    <script type="text/javascript" src="/zipcode/media/ho600_zipcode_operation.js"></script>
+    <title>3+2郵遞區號查詢系統{% block title %}{% endblock %}</title>
+    <style type="text/css">
+        ul.menu {
+            margin-left: -20px;
+            height: 20px;
+        }
+        ul.menu > li {
+            float: left;
+            margin-left: 5px;
+            margin-right: 5px;
+            list-style-type: none;
+        }
+    </style>
+    {% block script %}
+        <script type="text/javascript" src="/zipcode/media/actb_common.js"></script>
+        <script type="text/javascript" src="/zipcode/media/actb.js"></script>
+        <script type="text/javascript" src="/zipcode/media/ho600_zipcode.js"></script>
+        <script type="text/javascript" src="/zipcode/media/ho600_zipcode_operation.js"></script>
+        <script type="text/javascript">window.onload = loadHo600Zipcode;</script>
+        <style type="text/css">
+            div.logo, div.ho600 {
+                text-align: center;
+            }
+        </style>
+    {% endblock %}
   </head>
   <body>
-    <div class="ho600">
-        <select class="countys">
-            <option value="台北市">台北市</option>
-            <option value="基隆市">基隆市</option>
-            <option value="台北縣">台北縣</option>
-            <option value="桃園縣">桃園縣</option>
-            <option value="新竹市">新竹市</option>
-            <option value="新竹縣">新竹縣</option>
-            <option value="苗栗縣">苗栗縣</option>
-            <option value="台中市">台中市</option>
-            <option value="台中縣">台中縣</option>
-            <option value="彰化縣">彰化縣</option>
-            <option value="南投縣">南投縣</option>
-            <option value="雲林縣">雲林縣</option>
-            <option value="嘉義市">嘉義市</option>
-            <option value="嘉義縣">嘉義縣</option>
-            <option value="台南市">台南市</option>
-            <option value="台南縣">台南縣</option>
-            <option value="高雄市">高雄市</option>
-            <option value="高雄縣">高雄縣</option>
-            <option value="屏東縣">屏東縣</option>
-            <option value="宜蘭縣">宜蘭縣</option>
-            <option value="花蓮縣">花蓮縣</option>
-            <option value="台東縣">台東縣</option>
-            <option value="澎湖縣">澎湖縣</option>
-            <option value="金門縣">金門縣</option>
-            <option value="連江縣">連江縣</option>
-            <option value="南海島">南海島</option>
-            <option value="釣魚台">釣魚台</option>
-        </select>
-        <select class="districts">
-            <option value="100">中正區(100)</option>
-            <option value="103">大同區(103)</option>
-            <option value="104">中山區(104)</option>
-            <option value="105">松山區(105)</option>
-            <option value="106">大安區(106)</option>
-            <option value="108">萬華區(108)</option>
-            <option value="110">信義區(110)</option>
-            <option value="111">士林區(111)</option>
-            <option value="112">北投區(112)</option>
-            <option value="114">內湖區(114)</option>
-            <option value="115">南港區(115)</option>
-            <option value="116">文山區(116)</option>
-        </select>
-        <span title="如： 羅斯福路 1 段。">路街名： <input type="text" class="street" /></span>
-        <select class="kinds">
-            <option value=""></option>
-        </select>
-        <span title="如： 9999 號 3 樓之 1 。">地址： <input type="text" class="number" /></span>
-        <input type="submit" value="路街名重設" class="reset" />
-        <input type="submit" value="全部重設" class="all_reset" />
-        <br/>
-        <span>郵遞區號：</span>
-        <span class="zipcode"></span>
-        <br/>
-        <span>地址　　：</span>
-        <span class="address"></span>
-        <br/>
-        <span>地址全名：</span>
-        <span class="zipcode_address"></span>
-    </div>
+    <ul class="menu">
+        <li><a href="/">查詢首頁</a></li>
+        <li><a href="/embeded.html">嵌入方法</a></li>
+        <li><a href="http://code.google.com/p/zipcode-3plus2/" target="_blank">Google Code 開發站台</a></li>
+    </ul>
+    {% block body %}
+        <div class="logo">
+            <img src="/media/h6.png" width="160px" height="160px">
+        </div>
+        <div class="ho600">
+            <select class="countys">
+                <option value="台北市">台北市</option>
+                <option value="基隆市">基隆市</option>
+                <option value="台北縣">台北縣</option>
+                <option value="桃園縣">桃園縣</option>
+                <option value="新竹市">新竹市</option>
+                <option value="新竹縣">新竹縣</option>
+                <option value="苗栗縣">苗栗縣</option>
+                <option value="台中市">台中市</option>
+                <option value="台中縣">台中縣</option>
+                <option value="彰化縣">彰化縣</option>
+                <option value="南投縣">南投縣</option>
+                <option value="雲林縣">雲林縣</option>
+                <option value="嘉義市">嘉義市</option>
+                <option value="嘉義縣">嘉義縣</option>
+                <option value="台南市">台南市</option>
+                <option value="台南縣">台南縣</option>
+                <option value="高雄市">高雄市</option>
+                <option value="高雄縣">高雄縣</option>
+                <option value="屏東縣">屏東縣</option>
+                <option value="宜蘭縣">宜蘭縣</option>
+                <option value="花蓮縣">花蓮縣</option>
+                <option value="台東縣">台東縣</option>
+                <option value="澎湖縣">澎湖縣</option>
+                <option value="金門縣">金門縣</option>
+                <option value="連江縣">連江縣</option>
+                <option value="南海島">南海島</option>
+                <option value="釣魚台">釣魚台</option>
+            </select>
+            <select class="districts">
+                <option value="100">中正區(100)</option>
+                <option value="103">大同區(103)</option>
+                <option value="104">中山區(104)</option>
+                <option value="105">松山區(105)</option>
+                <option value="106">大安區(106)</option>
+                <option value="108">萬華區(108)</option>
+                <option value="110">信義區(110)</option>
+                <option value="111">士林區(111)</option>
+                <option value="112">北投區(112)</option>
+                <option value="114">內湖區(114)</option>
+                <option value="115">南港區(115)</option>
+                <option value="116">文山區(116)</option>
+            </select>
+            <span title="如： 羅斯福路 1 段。">路街名： <input type="text" class="street" /></span>
+            <select class="kinds">
+                <option value=""></option>
+            </select>
+            <span title="如： 9999 號 3 樓之 1 。">地址： <input type="text" class="number" /></span>
+            <input type="submit" value="路街名重設" class="reset" />
+            <input type="submit" value="全部重設" class="all_reset" />
+            <br/>
+            <span>郵遞區號：</span>
+            <span class="zipcode"></span>
+            <br/>
+            <span>地址：</span>
+            <span class="address"></span>
+            <br/>
+            <span>地址全名：</span>
+            <span class="zipcode_address"></span>
+        </div>
+    {% endblock %}
   </body>
 </html>
