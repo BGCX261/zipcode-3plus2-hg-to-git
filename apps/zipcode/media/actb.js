@@ -1,3 +1,5 @@
+/* author: http://www.codeproject.com/Members/zichun */
+
 var actb_history;
 
 function actb(obj,ca){

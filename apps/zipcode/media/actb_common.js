@@ -1,3 +1,5 @@
+/* author: http://www.codeproject.com/Members/zichun */
+
 /* Event Functions */
 
 // Add an event to the obj given

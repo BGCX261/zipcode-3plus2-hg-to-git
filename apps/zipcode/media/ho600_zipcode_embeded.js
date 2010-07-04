@@ -1,4 +1,6 @@
 
+/* author: http://www.codeproject.com/Members/zichun */
+
 /* Event Functions */
 
 // Add an event to the obj given
@@ -171,6 +173,8 @@ function replaceHTML(obj,text){
     };
     obj.appendChild(document.createTextNode(text));
 }
+
+/* author: http://www.codeproject.com/Members/zichun */
 
 var actb_history;
 
