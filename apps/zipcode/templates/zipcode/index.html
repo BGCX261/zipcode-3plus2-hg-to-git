@@ -25,6 +25,14 @@
             div.logo, div.ho600 {
                 text-align: center;
             }
+            div.notice {
+                width: 600px;
+                margin-top: 40px;
+            }
+            span.notice {
+                font-weight: bold;
+                color: red;
+            }
         </style>
     {% endblock %}
   </head>
@@ -100,6 +108,10 @@
             <br/>
             <span>地址全名：</span>
             <span class="zipcode_address"></span>
+        </div>
+
+        <div class="notice">
+            本頁面已使用<span class="notice"> HTML5 </span>的<span class="notice"> Offline </span>技術，如您所使用的瀏覽器是 Chrome5+, Firefox3.6+, Safari4+, Opera10+, IE9+(Might be? Who cares!)。可在瀏覽本頁面後，<span class="notice">將網路斷線</span>，但仍舊可在同一個瀏覽器上鍵入<a href="http://zipcode.ho600.com/"><span class="notice"> http://zipcode.ho600.com/ </span></a>來使用本功能。
         </div>
     {% endblock %}
     <script type="text/javascript">
