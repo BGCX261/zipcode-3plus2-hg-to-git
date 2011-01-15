@@ -172,17 +172,28 @@ function updateAddress (node) {
     district = district.replace(/\(.*\)/, '');
 
     var $street = getElementByClassName('street', node);
-    var street = $street.value;
+    if ($street) {
+        var street = $street.value;
+    } else {
+        var street = '';
+    }
 
     var $number = getElementByClassName('number', node);
-    var number = $number.value;
+    if($number){
+        var number = $number.value;
+    } else {
+        var number = '';
+    }
+
 
     var $zipcode = getElementByClassName('zipcode', node);
     var $kind = getElementByClassName('kinds', node);
-    $zipcode.innerHTML = $district.value + $kind.value;
+    if ($zipcode && $kind) {
+        $zipcode.innerHTML = $district.value + $kind.value;
+    }
 
     var $address = getElementByClassName('address', node);
-    if (street) {
+    if ($address && street) {
         if (number) {
             $address.innerHTML = county + ' ' + district + ' ' + street + ' ' + number;
         } else {
@@ -193,12 +204,14 @@ function updateAddress (node) {
     }
 
     var $zipcode_address = getElementByClassName('zipcode_address', node);
-    $zipcode_address.innerHTML = $zipcode.innerHTML + ' ' + $address.innerHTML;
+    if ($zipcode_address){
+        $zipcode_address.innerHTML = $zipcode.innerHTML + ' ' + $address.innerHTML;
+    }
 }
 
 function writeHo600ZipcodeDIV (classname) {
     if(!classname) classname = '';
-    
+
     var html = '';
     html += '%3Cdiv class="ho600 '+ classname + '"%3E';
     html += '    %3Cselect class="countys"%3E';
@@ -353,4 +366,3 @@ function loadSimpleHo600Zipcode () {
         $county.onchange = selectCountys(ho600s[i]);
     }
 }
-
