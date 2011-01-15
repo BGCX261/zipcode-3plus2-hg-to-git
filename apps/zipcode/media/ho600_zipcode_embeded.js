@@ -736,7 +736,9 @@ function selectCountys (node) {
             $district.options.add(new Option(districts[i][1]+'('+districts[i][0]+')', districts[i][0]));
         }
 
-        $district.actb_obj.actb_keywords = HO600_DISTRICT[$district.value];
+        if ($district.actb_obj && $district.actb_obj.actb_keywords){
+            $district.actb_obj.actb_keywords = HO600_DISTRICT[$district.value];
+        }
 
         updateAddress(node);
     }
