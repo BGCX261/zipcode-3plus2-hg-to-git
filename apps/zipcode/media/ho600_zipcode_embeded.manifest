@@ -1,8 +1,9 @@
 CACHE MANIFEST
 
-# v14
+# v26
 
 CACHE:
 
 /favicon.ico
-http://zipcode.ho600.com/zipcode/media/ho600_zipcode_embeded.js
+/media/h6.png
+/zipcode/media/ho600_zipcode_embeded.js

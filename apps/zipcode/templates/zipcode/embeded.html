@@ -12,12 +12,12 @@
     <h1>嵌入網頁語法如下：</h1>
     <textarea rows="4" cols="120">
 <script type="text/javascript" src="http://zipcode.ho600.com/zipcode/media/ho600_zipcode_embeded.js"></script>
-<script type="text/javascript">window.onload = loadHo600Zipcode;</script>
+<script type="text/javascript">window.onload=loadHo600Zipcode;</script>
 <script type='text/javascript'>writeHo600ZipcodeDIV('customize_name1');</script>
 <script type='text/javascript'>writeHo600ZipcodeDIV('customize_name2');</script>
     </textarea>
 
-    <h1>說明如下：</h1>
+    <h2>說明如下：</h2>
     <p>
         在同一頁面上，可任嵌入多個「3+2住址查詢表單」，若要自定 CSS ，則建議使用 'customize_name'
         方式作標記。當嵌入 1 個以上的表單時，僅需加入 writeHo600ZipcodeDIV('xxx')
@@ -25,8 +25,11 @@
         也只宣告一次。下方為嵌入實例。
     </p>
 
-    <script type="text/javascript" src="http://zipcode.ho600.com/zipcode/media/ho600_zipcode_embeded.js"></script>
-    <script type="text/javascript">window.onload = loadHo600Zipcode;</script>
+    <script type="text/javascript" src="/zipcode/media/ho600_zipcode_embeded.js"></script>
+    <script type="text/javascript">window.onload=function(){
+        loadHo600Zipcode();
+        loadSimpleHo600Zipcode();
+    }</script>
     <h3>1:</h3>
     <script type='text/javascript'>writeHo600ZipcodeDIV('no_1');</script>
 
@@ -35,4 +38,20 @@
 
     <h3>3:</h3>
     <script type='text/javascript'>writeHo600ZipcodeDIV('no_3');</script>
+    <h1>使用簡單的下拉框，語法如下：</h1>
+
+    <textarea rows="4" cols="120">
+<script type="text/javascript" src="http://zipcode.ho600.com/zipcode/media/ho600_county.js"></script>
+<script type="text/javascript" src="http://zipcode.ho600.com/zipcode/media/ho600_zipcode_operation.js"></script>
+<script type="text/javascript">window.onload=loadSimpleHo600Zipcode;</script>
+<script type='text/javascript'>writeSimpleHo600ZipcodeDIV('simple1');</script>
+    </textarea>
+
+    <h2>說明如下：</h2>
+    <p>
+        簡單使用縣市鄉鎮區下拉功能。
+    </p>
+
+    <h3>1:</h3>
+    <script type='text/javascript'>writeSimpleHo600ZipcodeDIV('simple1');</script>
 {% endblock %}
