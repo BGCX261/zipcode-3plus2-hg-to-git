@@ -193,14 +193,16 @@ function updateAddress (node) {
     }
 
     var $address = getElementByClassName('address', node);
-    if ($address && street) {
-        if (number) {
-            $address.innerHTML = county + ' ' + district + ' ' + street + ' ' + number;
+    if ($address){
+        if (street) {
+            if (number) {
+                $address.innerHTML = county + ' ' + district + ' ' + street + ' ' + number;
+            } else {
+                $address.innerHTML = county + ' ' + district + ' ' + street;
+            }
         } else {
-            $address.innerHTML = county + ' ' + district + ' ' + street;
+            $address.innerHTML = county + ' ' + district;
         }
-    } else {
-        $address.innerHTML = county + ' ' + district;
     }
 
     var $zipcode_address = getElementByClassName('zipcode_address', node);
