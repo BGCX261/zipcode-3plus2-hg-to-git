@@ -28,6 +28,10 @@ handlers:
 #  static_files: apps/zipcode/media/\1
 #  upload: apps/zipcode/media/(.*\.(gif|png|jpg))
 
+- url: /appcommon/buglist/
+  script: main.py
+  login: required
+
 - url: /.*
   script: main.py
 #  login: required
