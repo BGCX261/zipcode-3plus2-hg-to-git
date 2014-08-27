@@ -12,6 +12,6 @@ indexes:
 
 - kind: BugPage
   properties:
-    - name: is_solved
-    - name: create_time
-      direction: desc
+  - name: is_solved
+  - name: create_time
+    direction: desc
