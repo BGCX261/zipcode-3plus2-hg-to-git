@@ -318,7 +318,7 @@ function writeSimpleHo600ZipcodeDIV (classname) {
     html += '        %3Coption value="台北市"%3E台北市%3C/option%3E';
     html += '        %3Coption value="基隆市"%3E基隆市%3C/option%3E';
     html += '        %3Coption value="新北市"%3E新北市%3C/option%3E';
-    html += '        %3Coption value="桃園縣"%3E桃園縣%3C/option%3E';
+    html += '        %3Coption value="桃園市"%3E桃園市%3C/option%3E';
     html += '        %3Coption value="新竹市"%3E新竹市%3C/option%3E';
     html += '        %3Coption value="新竹縣"%3E新竹縣%3C/option%3E';
     html += '        %3Coption value="苗栗縣"%3E苗栗縣%3C/option%3E';
